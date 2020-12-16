@@ -2,7 +2,7 @@
 CODE QUIZ!!!
 
 # Summary:
-A Timed Quiz used to test knowledge of coding and will be keeping the score of the user. 
+A Timead Quiz used to test knowledge of coding and will be keeping the score of the user. 
 Code Quiz will do the following: 
 * Have a starting button which will comense the time so
 

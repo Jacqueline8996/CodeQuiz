@@ -21,6 +21,7 @@ Code Quiz will do the following:
 # Installation:
   There is no installation required for this page, all files can be viewed at the following link:
 * https://jacqueline8996.github.io/Homework4/ 
+* https://github.com/Jacqueline8996/Homework4.git
 
 * Have a starting button which will commence the time of the Quiz
  

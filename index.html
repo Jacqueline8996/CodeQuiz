@@ -6,7 +6,7 @@
     <title>CODE QUIZ</title>
     <!-- link bootstrp-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
-    <link rel="script" href="asset/script.js">
+    <link rel="stylesheet" href="asset/style.css">
 </head>
 <body>
     <!--Nav bar of the page-->
@@ -14,16 +14,47 @@
         <div class="container">
             <div class="row">
             <div class="col-md-2">
-                <p class = "Higscore">View Higscore</p>
+                <p class ="higscore">View Higscore</p>
             </div>
             <div class="col-md-8">
 
             </div>
-            <div class="col-md-6">
-                <p class="time">Time</p>
+            <div class="col-md-2">
+                <p class="time">Time:</p>
         </div>
     </nav>
 
-    <!---QUestion will be asked in the secontion -->
+    <!---QUestion will be asked in the secontion place holder-->
+    <section>
+        <div class="container">
+            <div class="row">
+            <div class ="col-md-8 offset-md-2">
+                <!-- Multiple choice questions-->
+                <div class="question">
+                </div>
+            </div>
+            <div class ="col-md-8 offset-md-2">
+                <!-- Multiple choice questions-->
+                <div class="card">
+                    <div class="card-body">
+                        <h2 class="card-title">question</h2>
+
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-primary btn-sm " id="choice1">Large button</button>
+                        </div>
+                        <!--result to the first question-->
+                        <div class="resToQ"> section3
+                        </div>
+                
+                    </div>
+                </div>
+            </div> 
+
+        </div>
+
+    </section>
+   
+
+<script src="asset/script.js"></script>
 </body>
 </html>

@@ -1,13 +1,19 @@
-.highscore{
+nav{
     color: purple;
 }
 
 section{
     padding: 100px;
 }
-.buttons{
+.button{
     color: white;
     background-color: purple;
+    border-radius: 4px;
+    font-size: medium;
+
+}
+.button:hover{
+    background-color:rgb(172, 85, 172);
 }
 .card{
     text-align: center;

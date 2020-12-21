@@ -1,5 +1,25 @@
 nav{
     color: purple;
+
+    
+}
+a {
+    text-decoration: none; 
+    color:purple; 
+}
+a:hover{
+    color:rgb(118, 19, 118);
+}
+#backbtn{
+
+    color: white;
+}
+.highscore{
+    background-color: Transparent;
+    background-repeat:no-repeat;
+    border: none;
+    cursor:pointer;
+    overflow: hidden;   
 }
 
 section{
@@ -17,4 +37,8 @@ section{
 }
 .card{
     text-align: center;
+}
+.userInfoRow{
+    background-color:rgb(212, 166, 235) ;
+    color: black;
 }

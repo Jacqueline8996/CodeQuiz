@@ -8,6 +8,7 @@ var startDisEl = document.querySelector("#startWindow");
 //var cardEl =document.querySelector(".card");
 //var cardTitleEl =document.querySelector(".card-title");
 //var cardOptionsEl =document.querySelector(".card-options");
+var choicesEl = document.querySelector(".choices");
 var rowScores = document.querySelector(".userInfoRow");
 var highscoreTable = document.querySelector("HighscoreTable");
 var highscoreRow = document.querySelector("userInfoRow");
@@ -76,21 +77,48 @@ function highscoreDis(){
     scr = "highscore.html"
     
 };
+function displayButtons(list){
+    for (var i = 0; i < list.length ; i++){
+    
+        //goes through the list printing out the buttons
+        var option = document.createElement("button");
+        option.setAttribute("class","button")
+        option.setAttribute("id","choice-Btn")
+        option.innerHTML = list[i];
+        choicesEl.appendChild(option);
+        
+    }
 
+}
 
 function quizStart(){
    
     startDisEl.style.visibility = "hidden";
     questtionEl.style.visibility = "visible";
     var score = startTimer();
+    var i1 = 0
 
-    //question asked 
-    var Questprompt = document.createElement("H2");
-    var Quest = document.createTextNode(quest[1]);
-    questtionEl.appendChild(Quest);
-    
-    
-   
+     //question asked 
+     var Questprompt = document.createElement("H2").setAttribute("class", "questionsAsk");
+     var Quest = document.createTextNode(quest[1]);
+     questtionEl.appendChild(Quest);
+
+
+    displayButtons(a1);
+
+    //Goes through question arry until either contition is meet (add when score ==0)
+   // while(i1 < quest.length){
+         //question asked 
+      //  var Questprompt = document.createElement("H2").setAttribute("class", "questionsAsk");
+      ///  var Quest = document.createTextNode(quest[1]);
+       // questtionEl.appendChild(Quest);
+
+       // for (var i = 0; i < movies.length ; i++){
+        //    choicesEl.createElement("button")
+        //}
+   // }
+
+
 
     //cardEl.innerHTML = "";
     var i = 0

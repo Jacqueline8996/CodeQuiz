@@ -35,6 +35,14 @@ section{
 .button:hover{
     background-color:rgb(172, 85, 172);
 }
+#choice-Btn{
+    display: block;
+    padding: 2px;
+}
+.questionsAsk{
+    font-size: 50px;
+    text-align: center;
+}
 .card{
     text-align: center;
 }

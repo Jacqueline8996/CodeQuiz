@@ -77,6 +77,7 @@ function highscoreDis(){
     scr = "highscore.html"
     
 };
+
 function displayButtons(list){
     for (var i = 0; i < list.length ; i++){
     
@@ -88,6 +89,7 @@ function displayButtons(list){
         choicesEl.appendChild(option);
         
     }
+    //return value of clicked to compare answer 
 
 }
 
@@ -99,12 +101,13 @@ function quizStart(){
     var i1 = 0
 
      //question asked 
-     var Questprompt = document.createElement("H2").setAttribute("class", "questionsAsk");
-     var Quest = document.createTextNode(quest[1]);
-     questtionEl.appendChild(Quest);
+     var Questprompt = document.createElement("h2");
+     Questprompt.setAttribute("class","questionsAsk");
+     Questprompt.innerHTML = quest[0];
+     questtionEl.appendChild(Questprompt);
 
 
-    displayButtons(a1);
+        displayButtons(a1);
 
     //Goes through question arry until either contition is meet (add when score ==0)
    // while(i1 < quest.length){

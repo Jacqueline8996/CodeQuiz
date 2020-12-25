@@ -4,14 +4,16 @@ var viewScoreEL = document.querySelector(".highscore");
 var timerEL = document.querySelector(".time");
 var questtionEl = document.querySelector(".question");
 var buttonEl =document.querySelector("#choice");
-var cardEl =document.querySelector(".card");
-var cardTitleEl =document.querySelector(".card-title");
-var cardOptionsEl =document.querySelector(".card-options");
+var startDisEl = document.querySelector("#startWindow");
+//var cardEl =document.querySelector(".card");
+//var cardTitleEl =document.querySelector(".card-title");
+//var cardOptionsEl =document.querySelector(".card-options");
 var rowScores = document.querySelector(".userInfoRow");
 var highscoreTable = document.querySelector("HighscoreTable");
 var highscoreRow = document.querySelector("userInfoRow");
 var sec = 10;
 var zero = 0
+//remove object
 var quizObj = [
     {
         "Questions":"what is the purpose of bootstrap?",
@@ -44,6 +46,7 @@ var quizObj = [
 
 
 ];
+
 var quest = ["what is the purpose of bootstrap?","What is an array?","Which languages do not use semi-colons to end code?","What version of HTML are we on?"];
 var a1 = ["template to build website","fancy boots","items","documents"];
 var a2 = ["a boquet of flowers","a boquet of flowers","code","a list","a object"];
@@ -76,22 +79,41 @@ function highscoreDis(){
 
 
 function quizStart(){
+   
+    startDisEl.style.visibility = "hidden";
+    questtionEl.style.visibility = "visible";
     var score = startTimer();
+
+    //question asked 
+    var Questprompt = document.createElement("H2");
+    var Quest = document.createTextNode(quest[1]);
+    questtionEl.appendChild(Quest);
     
-    for (i = 0; i < quest.length; i++) {
-        var que = quest[i];
-        console.log(que);
-        cardTitleEl.textContent.que;
-        for (i2 = 0; i2 < a1.length; i2++) {
-            var ans = a1[i2];
-            console.log[ans];
-        };
-        
-    };
+    
+   
+
+    //cardEl.innerHTML = "";
+    var i = 0
+    var i2 = 0
+    cardTitleEl.innerHTML = quest[i];
+    
+    cardOptionsEl.innerHTML =(a1[i]);
+
+    //for (i2 ; i2 < parseInt(a1.length); i2 ++) {
+        console.log(a1[i2]);
+
+      // cardOptionsEl.createElement("button").innerHTML.cardOptionsEl.createTextNode(a1[i2]);
+       // var choice = cardOptionsEl.createTextNode(a1[i2]);
+       // choiceEl.appendChild(choice);
+       // cardOptionsEl.appendChild(choiceEl);
+     //   console.log(a1[i2]);
+
+   // }
+
 
 };
-//function displayStart(){
-//};
+
+
 
 function startgame(){
     quizStart();

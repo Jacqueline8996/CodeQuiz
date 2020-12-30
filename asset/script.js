@@ -3,17 +3,18 @@ var startEl = document.querySelector("#start-button");
 var viewScoreEL = document.querySelector(".highscore");
 var timerEL = document.querySelector(".time");
 var questtionEl = document.querySelector(".question");
-var buttonEl =document.querySelector("#choice");
+var buttonEl = document.querySelector("#choice");
 var startDisEl = document.querySelector("#startWindow");
 //var cardEl =document.querySelector(".card");
 //var cardTitleEl =document.querySelector(".card-title");
 //var cardOptionsEl =document.querySelector(".card-options");
 var choicesEl = document.querySelector(".choices");
+var responseEl = document.querySelector(".response");
 var rowScores = document.querySelector(".userInfoRow");
 var highscoreTable = document.querySelector("HighscoreTable");
 var highscoreRow = document.querySelector("userInfoRow");
 var sec = 10;
-var zero = 0
+var zero = 0;
 //remove object
 var quizObj = [
     {
@@ -47,12 +48,14 @@ var quizObj = [
 
 
 ];
-
+var count = 0;
 var quest = ["what is the purpose of bootstrap?","What is an array?","Which languages do not use semi-colons to end code?","What version of HTML are we on?"];
 var a1 = ["template to build website","fancy boots","items","documents"];
 var a2 = ["a boquet of flowers","a boquet of flowers","code","a list","a object"];
 var a3 =["c++","python","javascript","java"];
 var a4 = ["HTML4","HTML5","HTML7","HTML6"];
+
+var listQue = [a1,a2,a3,a4];
 
 
 //timer for quiz
@@ -77,21 +80,49 @@ function highscoreDis(){
     scr = "highscore.html"
     
 };
+function rightWrong(){
+
+    var choice = //answer from user 
+    console.log("in right or wrong to check choice");
+
+    if (choice === a1[0] || choice === a2[3] || choice === a3[1] || choice === a4[3] ){
+        var result = document.createElement("div");
+        result.innerHTML = "Right choice"
+        responseEl.appendChild(result);
+        responseEl.style.visibility = "visible";
+        
+    }
+    else{
+        var result = document.createElement("div");
+        result.innerHTML = "Wrong choice"
+        responseEl.appendChild(result);
+        responseEl.style.visibility = "visible";
+
+    }
+}
 
 function displayButtons(list){
     for (var i = 0; i < list.length ; i++){
     
         //goes through the list printing out the buttons
         var option = document.createElement("button");
-        option.setAttribute("class","button")
-        option.setAttribute("id","choice-Btn")
+        option.setAttribute("class","button");
+        option.setAttribute("id","choiceBtn");
         option.innerHTML = list[i];
         choicesEl.appendChild(option);
         
     }
-    //return value of clicked to compare answer 
+
+    return option
+   // choicesEl.addEventListener("click",rightWrong);
+    
+}
+
+function getValue (){
+
 
 }
+
 
 function quizStart(){
    
@@ -106,40 +137,37 @@ function quizStart(){
      Questprompt.innerHTML = quest[0];
      questtionEl.appendChild(Questprompt);
 
+    choicesEl.addEventListener("click",displayButtons(a1));
+    console.log("my choice", displayButtons(a1));
 
-        displayButtons(a1);
+       // displayButtons(a1);
 
     //Goes through question arry until either contition is meet (add when score ==0)
-   // while(i1 < quest.length){
-         //question asked 
-      //  var Questprompt = document.createElement("H2").setAttribute("class", "questionsAsk");
-      ///  var Quest = document.createTextNode(quest[1]);
-       // questtionEl.appendChild(Quest);
 
-       // for (var i = 0; i < movies.length ; i++){
-        //    choicesEl.createElement("button")
-        //}
-   // }
+    //for (var i = 0; i < quest.length ; i++){
 
-
-
-    //cardEl.innerHTML = "";
-    var i = 0
-    var i2 = 0
-    cardTitleEl.innerHTML = quest[i];
     
-    cardOptionsEl.innerHTML =(a1[i]);
+        
+    //}
 
-    //for (i2 ; i2 < parseInt(a1.length); i2 ++) {
-        console.log(a1[i2]);
+  // count = 0;
+  // while(count < quest.length){
+        //question asked 
+   //     var Questprompt = document.createElement("h2");
+   ///     Questprompt.setAttribute("class","questionsAsk");
+    //    Questprompt.innerHTML = quest[0];
+    //    questtionEl.appendChild(Questprompt);
+    //    displayButtons(listQue[count]);
+       
 
-      // cardOptionsEl.createElement("button").innerHTML.cardOptionsEl.createTextNode(a1[i2]);
-       // var choice = cardOptionsEl.createTextNode(a1[i2]);
-       // choiceEl.appendChild(choice);
-       // cardOptionsEl.appendChild(choiceEl);
-     //   console.log(a1[i2]);
+     //   displayButtons.addEventListener("click",()=>{
+     //   count++;
+     //   }) ;
+
+      //  console.log(" in while loop ")
 
    // }
+
 
 
 };

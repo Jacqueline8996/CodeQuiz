@@ -25,17 +25,25 @@ a:hover{
 section{
     padding: 100px;
 }
+.response{
+
+    padding: 10px;
+    border-top: gray 2px solid;
+    color: gray ;
+    visibility: hidden;
+}
 .button{
     color: white;
     background-color: purple;
     border-radius: 4px;
+    padding: 5px;
     font-size: medium;
 
 }
 .button:hover{
     background-color:rgb(172, 85, 172);
 }
-#choice-Btn{
+#choiceBtn{
     display: block;
     padding: 2px;
 }

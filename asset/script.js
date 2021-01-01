@@ -55,7 +55,7 @@ var a2 = ["a boquet of flowers","a boquet of flowers","code","a list","a object"
 var a3 =["c++","python","javascript","java"];
 var a4 = ["HTML4","HTML5","HTML7","HTML6"];
 
-var listQue = [a1,a2,a3,a4];
+var listAns = [a1,a2,a3,a4];
 
 
 //timer for quiz
@@ -80,10 +80,11 @@ function highscoreDis(){
     scr = "highscore.html"
     
 };
-function rightWrong(){
 
-    var choice = //answer from user 
-    console.log("in right or wrong to check choice");
+//determins if the answer is right or wrong
+function rightWrong(choice){
+ 
+    console.log("in right or wrong to check choice", choice);
 
     if (choice === a1[0] || choice === a2[3] || choice === a3[1] || choice === a4[3] ){
         var result = document.createElement("div");
@@ -101,7 +102,17 @@ function rightWrong(){
     }
 }
 
+//gets value from clicks
+function getValue (){
+
+    var userClick = event.target.innerHTML;
+    console.log("yourchoice is ", userClick);
+    rightWrong(userClick);
+}
+
+// prints out the choices
 function displayButtons(list){
+
     for (var i = 0; i < list.length ; i++){
     
         //goes through the list printing out the buttons
@@ -110,17 +121,10 @@ function displayButtons(list){
         option.setAttribute("id","choiceBtn");
         option.innerHTML = list[i];
         choicesEl.appendChild(option);
-        
+        console.log("options", option.innerHTML);
+        option.addEventListener("click",getValue);
     }
-
-    return option
-   // choicesEl.addEventListener("click",rightWrong);
     
-}
-
-function getValue (){
-
-
 }
 
 
@@ -137,18 +141,9 @@ function quizStart(){
      Questprompt.innerHTML = quest[0];
      questtionEl.appendChild(Questprompt);
 
-    choicesEl.addEventListener("click",displayButtons(a1));
-    console.log("my choice", displayButtons(a1));
+    displayButtons(a1)
+   
 
-       // displayButtons(a1);
-
-    //Goes through question arry until either contition is meet (add when score ==0)
-
-    //for (var i = 0; i < quest.length ; i++){
-
-    
-        
-    //}
 
   // count = 0;
   // while(count < quest.length){
@@ -180,5 +175,6 @@ function startgame(){
 };
 //When star is pressed it start the game 
 startEl.addEventListener("click",startgame);
+
 
 //displayStart();

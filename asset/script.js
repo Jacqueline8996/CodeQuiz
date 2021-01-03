@@ -2,7 +2,8 @@
 var startEl = document.querySelector("#start-button");
 var viewScoreEL = document.querySelector(".highscore");
 var timerEL = document.querySelector(".time");
-var questtionEl = document.querySelector(".question");
+var mainQuestEl = document.querySelector(".quizQuest");
+var questtionEl = document.querySelector(".questions");
 var buttonEl = document.querySelector("#choice");
 var startDisEl = document.querySelector("#startWindow");
 //var cardEl =document.querySelector(".card");
@@ -54,8 +55,8 @@ var a1 = ["template to build website","fancy boots","items","documents"];
 var a2 = ["a boquet of flowers","a boquet of flowers","code","a list","a object"];
 var a3 =["c++","python","javascript","java"];
 var a4 = ["HTML4","HTML5","HTML7","HTML6"];
-
 var listAns = [a1,a2,a3,a4];
+var clickedButton = false;
 
 
 //timer for quiz
@@ -100,6 +101,7 @@ function rightWrong(choice){
         responseEl.style.visibility = "visible";
 
     }
+    clickedButton = true;
 }
 
 //gets value from clicks
@@ -127,6 +129,36 @@ function displayButtons(list){
     
 }
 
+//goes through the quiz 
+function quizThrough(){
+    count = 0;
+    while(count < quest.length){
+    //question asked 
+    var Questprompt = document.createElement("h2");
+    Questprompt.setAttribute("class","questionsAsk");
+    Questprompt.innerHTML = quest[count];
+    questtionEl.appendChild(Questprompt);
+    displayButtons(listAns[count]);
+
+    //count += 1;
+
+   if(clickedButton = true){
+           count += 1;
+           console.log(" in if  ") 
+           mainQuestEl.removeChild(mainQuestEl.firstChild);
+   };
+    //option.addEventListener("click",count+=1);
+   // displayButtons(listAns[count])
+    console.log(" in while loop ")
+    //count+=1;
+
+  }
+
+  
+
+
+
+}
 
 function quizStart(){
    
@@ -142,26 +174,8 @@ function quizStart(){
      questtionEl.appendChild(Questprompt);
 
     displayButtons(a1)
+
    
-
-
-  // count = 0;
-  // while(count < quest.length){
-        //question asked 
-   //     var Questprompt = document.createElement("h2");
-   ///     Questprompt.setAttribute("class","questionsAsk");
-    //    Questprompt.innerHTML = quest[0];
-    //    questtionEl.appendChild(Questprompt);
-    //    displayButtons(listQue[count]);
-       
-
-     //   displayButtons.addEventListener("click",()=>{
-     //   count++;
-     //   }) ;
-
-      //  console.log(" in while loop ")
-
-   // }
 
 
 

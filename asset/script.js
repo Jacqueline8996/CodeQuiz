@@ -194,6 +194,7 @@ function quizThrough(){
             displayQuestion(quest[count]);
             displayButtons(listAns[count]);
             
+            
             if (clickedButton == true){
                 console.log("did you cick if", clickedButton);
                 

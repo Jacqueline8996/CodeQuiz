@@ -16,6 +16,7 @@ var highscoreTable = document.querySelector("HighscoreTable");
 var highscoreRow = document.querySelector("userInfoRow");
 var sec = 10;
 var zero = 0;
+var count = 0;
 //remove object
 var quizObj = [
     {
@@ -49,14 +50,14 @@ var quizObj = [
 
 
 ];
-var count = 0;
+
 var quest = ["what is the purpose of bootstrap?","What is an array?","Which languages do not use semi-colons to end code?","What version of HTML are we on?"];
 var a1 = ["template to build website","fancy boots","items","documents"];
 var a2 = ["a boquet of flowers","a boquet of flowers","code","a list","a object"];
 var a3 =["c++","python","javascript","java"];
 var a4 = ["HTML4","HTML5","HTML7","HTML6"];
 var listAns = [a1,a2,a3,a4];
-var clickedButton = false;
+
 
 
 //timer for quiz
@@ -92,28 +93,38 @@ function rightWrong(choice){
         result.innerHTML = "Right choice"
         responseEl.appendChild(result);
         responseEl.style.visibility = "visible";
-        
+        clickedButton = true;
+
+       
     }
     else{
         var result = document.createElement("div");
         result.innerHTML = "Wrong choice"
         responseEl.appendChild(result);
         responseEl.style.visibility = "visible";
-
+        clickedButton = true;
+        
     }
-    clickedButton = true;
-}
+    
+    console.log("did you cick if", clickedButton);
 
-//gets value from clicks
+    count = increment();
+    console.log("did you cick if", count);
+    return clickedButton
+};
+
 function getValue (){
 
     var userClick = event.target.innerHTML;
     console.log("yourchoice is ", userClick);
     rightWrong(userClick);
-}
+    clickedButton = true;
+    console.log("did you cick if", clickedButton);
+};
 
 // prints out the choices
 function displayButtons(list){
+
 
     for (var i = 0; i < list.length ; i++){
     
@@ -125,40 +136,90 @@ function displayButtons(list){
         choicesEl.appendChild(option);
         console.log("options", option.innerHTML);
         option.addEventListener("click",getValue);
+       
     }
     
-}
+};
+
+function increment(){
+    count ++
+    return count;
+
+};
+function displayQuestion(list){
+    var Questprompt = document.createElement("h2");
+    Questprompt.setAttribute("class","questionsAsk");
+    Questprompt.innerHTML = list;
+    questtionEl.appendChild(Questprompt);
+};
+function emptyQuest(){
+
+    mainQuestEl.removeChild(mainQuestEl.firstChild);
+
+};
+
+function displayQuiz(){
+    displayQuestion(quest[count]);
+    displayButtons(listAns[count]);
+
+};
 
 //goes through the quiz 
 function quizThrough(){
-    count = 0;
+    
+
+    //displayQuestion(quest[count]);
+   // displayButtons(listAns[count]);
+   // var clickedButton = true;
+    var clickedButton = false;
+    console.log("count begfor",count);
+
+
+
+
+
     while(count < quest.length){
-    //question asked 
-    var Questprompt = document.createElement("h2");
-    Questprompt.setAttribute("class","questionsAsk");
-    Questprompt.innerHTML = quest[count];
-    questtionEl.appendChild(Questprompt);
-    displayButtons(listAns[count]);
 
-    //count += 1;
+        
+            console.log("count", count);
+            console.log("in while");
+            console.log("did you cick 2", clickedButton);
+            //question asked 
+            //var Questprompt = document.createElement("h2");
+            //Questprompt.setAttribute("class","questionsAsk");
+            //Questprompt.innerHTML = quest[count];
+            //questtionEl.appendChild(Questprompt);
+            //displayQuestion(quest[count]);
+           // displayButtons(listAns[count]);
+            displayQuestion(quest[count]);
+            displayButtons(listAns[count]);
+            
+            if (clickedButton == true){
+                console.log("did you cick if", clickedButton);
+                
+                //displayQuestion(quest[count]);
+                //displayButtons(listAns[count]);
+                count = increment();
+                clickedButton = false;
 
-   if(clickedButton = true){
-           count += 1;
-           console.log(" in if  ") 
-           mainQuestEl.removeChild(mainQuestEl.firstChild);
-   };
-    //option.addEventListener("click",count+=1);
-   // displayButtons(listAns[count])
-    console.log(" in while loop ")
-    //count+=1;
+            }
 
-  }
+            
+            count ++;
+            clickedButton = false;
+
+
+    };
+
+
+
+    console.log("count", count);
+    console.log("out of while");
+
 
   
-
-
-
 }
+
 
 function quizStart(){
    
@@ -166,19 +227,9 @@ function quizStart(){
     questtionEl.style.visibility = "visible";
     var score = startTimer();
     var i1 = 0
+    quizThrough();
 
-     //question asked 
-     var Questprompt = document.createElement("h2");
-     Questprompt.setAttribute("class","questionsAsk");
-     Questprompt.innerHTML = quest[0];
-     questtionEl.appendChild(Questprompt);
-
-    displayButtons(a1)
-
-   
-
-
-
+    
 };
 
 

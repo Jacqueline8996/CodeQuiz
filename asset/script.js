@@ -23,40 +23,36 @@ var quizObj = [
         Answer1:"template to build website",
         Answer2:"fancy boots",
         Answer3:"items",
-        Answer4:"documents"
+        Answer4:"documents",
+        correct:"template to build website"
     },
     {
         Questions:"What is an array?",
         Answer1:"a boquet of flowers",
         Answer2:"code",
         Answer3:"a list",
-        Answer4:"a object"
+        Answer4:"a object",
+        correct:"a list",
     },
     {
         Questions:"Which languages do not use semi-colons to end code?",
         Answer1:"c++",
         Answer2:"python",
         Answer3:"javascript",
-        Answer4:"java"
+        Answer4:"java",
+        correct:"python"
     },
     {
         Questions:"What version of HTML are we on?",
         Answer1:"HTML4",
         Answer2:"HTML5",
         Answer3:"HTML7",
-        Answer4:"HTML6"
+        Answer4:"HTML6",
+        correct:"HTML6"
     },
 
 
 ];
-
-var quest = ["what is the purpose of bootstrap?","What is an array?","Which languages do not use semi-colons to end code?","What version of HTML are we on?"];
-var a1 = ["template to build website","fancy boots","items","documents"];
-var a2 = ["a boquet of flowers","a boquet of flowers","code","a list","a object"];
-var a3 =["c++","python","javascript","java"];
-var a4 = ["HTML4","HTML5","HTML7","HTML6"];
-var listAns = [a1,a2,a3,a4];
-
 
 
 //timer for quiz
@@ -88,7 +84,7 @@ function rightWrong(choice){
     document.querySelector(".response").innerHTML = "";
     console.log("in right or wrong to check choice", choice);
 
-    if (choice === a1[0] || choice === a2[3] || choice === a3[1] || choice === a4[3] ){
+    if (choice === quizObj[questionCount]["correct"]){
         var result = document.createElement("div");
         result.innerHTML = "Right choice"
         responseEl.appendChild(result);

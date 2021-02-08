@@ -11,10 +11,11 @@ var responseEl = document.querySelector(".response");
 var rowScores = document.querySelector(".userInfoRow");
 var highscoreTable = document.querySelector("HighscoreTable");
 var highscoreRow = document.querySelector("userInfoRow");
-var sec = 10;
+var sec = 100;
 var zero = 0;
 var count = 0;
 var questionCount = 0;
+var quizTaker = [];
 //remove object
 
 var quizObj = [
@@ -53,8 +54,15 @@ var quizObj = [
 
 
 ];
+function endQuiz(){
+
+    mainQuestEl.style.visibility = "hidden";
+    questtionEl.style.visibility = "hidden";
+    responseEl.style.visibility = "hidden";
 
 
+
+}
 //timer for quiz
 function startTimer(){
     //start the counting in miliseconds
@@ -62,8 +70,9 @@ function startTimer(){
         //add this to HTML
         timerEL.innerHTML='Time:'+ sec
         sec--;
-
-        if (sec < 0) {
+    
+        if (sec < 0 ) {
+            endQuiz();
             timerEL.innerHTML='Time:'+ zero
             clearInterval(timer);
         }
@@ -89,7 +98,7 @@ function rightWrong(choice){
         result.innerHTML = "Right choice"
         responseEl.appendChild(result);
         responseEl.style.visibility = "visible";
-        clickedButton = true;
+        // clickedButton = true;
        
     }
     else{
@@ -97,16 +106,14 @@ function rightWrong(choice){
         result.innerHTML = "Wrong choice"
         responseEl.appendChild(result);
         responseEl.style.visibility = "visible";
-        clickedButton = true;
+        // clickedButton = true;
+
+        sec = sec - 10;
+        
         
     }
-    // responseEl.style.visibility = "visble";
-    console.log("did you cick if", clickedButton);
+   
     emptyQuest();
-    count = increment();
-    console.log("did you cick if", count);
-    // responseEl.style.visibility = "hidden";
-    return clickedButton
 
 };
 
@@ -142,26 +149,17 @@ function objButton(counter){
     }
 }
 
-
-///redo work with object
-function goThroughOb(counter){
-
-    
+///Go through the oject 
+function goThroughOb(counter,number){
     // emptyQuest();
+    number ++;
     console.log("what is my number",counter);
-    
     var myQuestion = quizObj[counter]["Questions"];
     console.log(quizObj[counter]["Questions"]);
     displayQuestion(myQuestion);
-    
-
     objButton(counter);
     
-   
 }
-
-
-///// old
 
 //display name 
 function displayNameAdd(){
@@ -180,49 +178,59 @@ function displayNameAdd(){
 
 }
 
-function increment(){
-    count ++
-    return count;
-
-};
+//displays the questions which goes throught the object
 function displayQuestion(question){
     var Questprompt = document.createElement("h2");
     Questprompt.setAttribute("class","questionsAsk");
     Questprompt.innerHTML = question;
     questtionEl.appendChild(Questprompt);
 };
-function emptyQuest(){
 
+//empty divs in order to start fresh
+function emptyQuest(){
     document.querySelector(".questions").innerHTML = "";
     document.querySelector(".choices").innerHTML = "";
-
-    // //figure out how to make the thing visible not visible
-    // document.querySelector(".response").innerHTML = "";
-
 };
 
-
+//starts display by removing old displat and starting new quiz
 function quizStart(){
-   
+    startTimer();
     startDisEl.style.visibility = "hidden";
     questtionEl.style.visibility = "visible";
-
-    
-
-    
 };
 
-
-
+//starts the game 
 function startgame(){
-
     quizStart();
-    goThroughOb(questionCount);
-    // emptyQuest();
+    var questionNumber = 1;
+    var lengthQuiz = quizObj["length"];
+    // goThroughOb(questionCount,questionNumber);
+    // goThroughOb(questionCount,questionNumber);
 
+    console.log("questionNU",questionNumber);
+    console.log("questionNU",lengthQuiz);
+
+    if(questionNumber >= lengthQuiz){
+        emptyQuest();
+    }else{
+        goThroughOb(questionCount,questionNumber);
+    }
+    // } else if(questionNumber < lengthQuiz){
+    //     console.log("i am on this question",questionNumber + ">"+ lengthQuiz) ;
+    //     goThroughOb(questionCount,questionNumber);
+    // }
+    // if(questionNumber = lengthQuiz){
+    //     emptyQuest();
+    // }
+    
+
+    
 };
-//When star is pressed it start the game 
-startEl.addEventListener("click",startgame);
 
+function main(){
+    //When star is pressed it start the game 
+    startEl.addEventListener("click",startgame);
 
-//displayStart();
+}
+
+main();

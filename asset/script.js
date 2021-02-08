@@ -6,9 +6,6 @@ var mainQuestEl = document.querySelector(".quizQuest");
 var questtionEl = document.querySelector(".questions");
 var buttonEl = document.querySelector("#choice");
 var startDisEl = document.querySelector("#startWindow");
-//var cardEl =document.querySelector(".card");
-//var cardTitleEl =document.querySelector(".card-title");
-//var cardOptionsEl =document.querySelector(".card-options");
 var choicesEl = document.querySelector(".choices");
 var responseEl = document.querySelector(".response");
 var rowScores = document.querySelector(".userInfoRow");
@@ -17,35 +14,37 @@ var highscoreRow = document.querySelector("userInfoRow");
 var sec = 10;
 var zero = 0;
 var count = 0;
+var questionCount = 0;
 //remove object
+
 var quizObj = [
     {
-        "Questions":"what is the purpose of bootstrap?",
-        "Answer1":"template to build website",
-        "Answer2":"fancy boots",
-        "Answer3":"items",
-        "Answer4":"documents"
+        Questions:"what is the purpose of bootstrap?",
+        Answer1:"template to build website",
+        Answer2:"fancy boots",
+        Answer3:"items",
+        Answer4:"documents"
     },
     {
-        "Questions":"What is an array?",
-        "Answer1":"a boquet of flowers",
-        "Answer2":"code",
-        "Answer3":"a list",
-        "Answer4":"a object"
+        Questions:"What is an array?",
+        Answer1:"a boquet of flowers",
+        Answer2:"code",
+        Answer3:"a list",
+        Answer4:"a object"
     },
     {
-        "Questions":"Which languages do not use semi-colons to end code?",
-        "Answer1":"c++",
-        "Answer2":"python",
-        "Answer3":"javascript",
-        "Answer4":"java"
+        Questions:"Which languages do not use semi-colons to end code?",
+        Answer1:"c++",
+        Answer2:"python",
+        Answer3:"javascript",
+        Answer4:"java"
     },
     {
-        "Questions":"What version of HTML are we on?",
-        "Answer1":"HTML4",
-        "Answer2":"HTML5",
-        "Answer3":"HTML7",
-        "Answer4":"HTML6"
+        Questions:"What version of HTML are we on?",
+        Answer1:"HTML4",
+        Answer2:"HTML5",
+        Answer3:"HTML7",
+        Answer4:"HTML6"
     },
 
 
@@ -94,7 +93,6 @@ function rightWrong(choice){
         responseEl.appendChild(result);
         responseEl.style.visibility = "visible";
         clickedButton = true;
-
        
     }
     else{
@@ -105,9 +103,8 @@ function rightWrong(choice){
         clickedButton = true;
         
     }
-    
     console.log("did you cick if", clickedButton);
-
+    emptyQuest();
     count = increment();
     console.log("did you cick if", count);
     return clickedButton
@@ -115,111 +112,92 @@ function rightWrong(choice){
 
 function getValue (){
 
+   
     var userClick = event.target.innerHTML;
     console.log("yourchoice is ", userClick);
     rightWrong(userClick);
     clickedButton = true;
     console.log("did you cick if", clickedButton);
+    questionCount ++;
+    goThroughOb(questionCount);
 };
 
-// prints out the choices
-function displayButtons(list){
+//empty  the page
+//button with objet
+function objButton(counter){
 
+    ansNum = 1;
 
-    for (var i = 0; i < list.length ; i++){
-    
-        //goes through the list printing out the buttons
+    while (ansNum <= 4){
         var option = document.createElement("button");
         option.setAttribute("class","button");
         option.setAttribute("id","choiceBtn");
-        option.innerHTML = list[i];
+        option.innerHTML = quizObj[counter]["Answer" + ansNum];
         choicesEl.appendChild(option);
         console.log("options", option.innerHTML);
         option.addEventListener("click",getValue);
-       
+        ansNum ++;
+
     }
+}
+
+
+///redo work with object
+function goThroughOb(counter){
+
+    // emptyQuest();
+    console.log("what is my number",counter);
     
-};
+    var myQuestion = quizObj[counter]["Questions"];
+    console.log(quizObj[counter]["Questions"]);
+    displayQuestion(myQuestion);
+    
+
+    objButton(counter);
+    
+   
+}
+
+
+///// old
+
+//display name 
+function displayNameAdd(){
+    var nameTitle = document.createElement("h2");
+    nameTitle.setAttribute("class","allTitle");
+    nameTitle.innerHTML = "All Done!"
+    mainQuestEl.appendChild(nameTitle);
+    var nameInstr = document.createElement("p");
+    nameInstr.setAttribute("class","instruction");
+    nameInstr.innerHTML = "Your Final Score is " + "score";
+    mainQuestEl.appendChild(nameInstr);
+    var userName = document.createElement("input");
+    nameInstr.setAttribute("class","instruction");
+    nameTitle.innerHTML = document.createElement("input");
+    mainQuestEl.appendChild(nameTitle);
+
+}
 
 function increment(){
     count ++
     return count;
 
 };
-function displayQuestion(list){
+function displayQuestion(question){
     var Questprompt = document.createElement("h2");
     Questprompt.setAttribute("class","questionsAsk");
-    Questprompt.innerHTML = list;
+    Questprompt.innerHTML = question;
     questtionEl.appendChild(Questprompt);
 };
 function emptyQuest(){
 
-    mainQuestEl.removeChild(mainQuestEl.firstChild);
+    document.querySelector(".questions").innerHTML = "";
+    document.querySelector(".choices").innerHTML = "";
+
+    //figure out how to make the thing visible not visible
+    document.querySelector(".response").innerHTML = "";
 
 };
-
-function displayQuiz(){
-    displayQuestion(quest[count]);
-    displayButtons(listAns[count]);
-
-};
-
-//goes through the quiz 
-function quizThrough(){
-    
-
-    //displayQuestion(quest[count]);
-   // displayButtons(listAns[count]);
-   // var clickedButton = true;
-    var clickedButton = false;
-    console.log("count begfor",count);
-
-
-
-
-
-    while(count < quest.length){
-
-        
-            console.log("count", count);
-            console.log("in while");
-            console.log("did you cick 2", clickedButton);
-            //question asked 
-            //var Questprompt = document.createElement("h2");
-            //Questprompt.setAttribute("class","questionsAsk");
-            //Questprompt.innerHTML = quest[count];
-            //questtionEl.appendChild(Questprompt);
-            //displayQuestion(quest[count]);
-           // displayButtons(listAns[count]);
-            displayQuestion(quest[count]);
-            displayButtons(listAns[count]);
-            
-            
-            if (clickedButton == true){
-                console.log("did you cick if", clickedButton);
-                
-                //displayQuestion(quest[count]);
-                //displayButtons(listAns[count]);
-                count = increment();
-                clickedButton = false;
-
-            }
-
-            
-            count ++;
-            clickedButton = false;
-
-
-    };
-
-
-
-    console.log("count", count);
-    console.log("out of while");
-
-
-  
-}
 
 
 function quizStart(){
@@ -228,7 +206,7 @@ function quizStart(){
     questtionEl.style.visibility = "visible";
     var score = startTimer();
     var i1 = 0
-    quizThrough();
+    
 
     
 };
@@ -236,7 +214,10 @@ function quizStart(){
 
 
 function startgame(){
+
     quizStart();
+    goThroughOb(questionCount);
+    // emptyQuest();
 
 };
 //When star is pressed it start the game 

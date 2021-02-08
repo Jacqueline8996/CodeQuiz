@@ -85,6 +85,7 @@ function highscoreDis(){
 //determins if the answer is right or wrong
 function rightWrong(choice){
  
+    document.querySelector(".response").innerHTML = "";
     console.log("in right or wrong to check choice", choice);
 
     if (choice === a1[0] || choice === a2[3] || choice === a3[1] || choice === a4[3] ){
@@ -103,11 +104,14 @@ function rightWrong(choice){
         clickedButton = true;
         
     }
+    // responseEl.style.visibility = "visble";
     console.log("did you cick if", clickedButton);
     emptyQuest();
     count = increment();
     console.log("did you cick if", count);
+    // responseEl.style.visibility = "hidden";
     return clickedButton
+
 };
 
 function getValue (){
@@ -125,6 +129,7 @@ function getValue (){
 //empty  the page
 //button with objet
 function objButton(counter){
+    
 
     ansNum = 1;
 
@@ -145,6 +150,7 @@ function objButton(counter){
 ///redo work with object
 function goThroughOb(counter){
 
+    
     // emptyQuest();
     console.log("what is my number",counter);
     
@@ -194,8 +200,8 @@ function emptyQuest(){
     document.querySelector(".questions").innerHTML = "";
     document.querySelector(".choices").innerHTML = "";
 
-    //figure out how to make the thing visible not visible
-    document.querySelector(".response").innerHTML = "";
+    // //figure out how to make the thing visible not visible
+    // document.querySelector(".response").innerHTML = "";
 
 };
 
@@ -204,8 +210,7 @@ function quizStart(){
    
     startDisEl.style.visibility = "hidden";
     questtionEl.style.visibility = "visible";
-    var score = startTimer();
-    var i1 = 0
+
     
 
     

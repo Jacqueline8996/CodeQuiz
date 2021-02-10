@@ -11,13 +11,15 @@ var responseEl = document.querySelector(".response");
 var rowScores = document.querySelector(".userInfoRow");
 var highscoreTable = document.querySelector("HighscoreTable");
 var highscoreRow = document.querySelector("userInfoRow");
-var sec = 100;
+var userInputEl = document.querySelector("#initalPrompt");
+var classintro = document.querySelector("#classUser");
+var sec = 50;
 var zero = 0;
 var count = 0;
 var questionCount = 0;
 var quizTaker = [];
 //remove object
-
+var quizDone = false;
 var quizObj = [
     {
         Questions:"what is the purpose of bootstrap?",
@@ -54,15 +56,26 @@ var quizObj = [
 
 
 ];
-function endQuiz(){
+function endQuiz(myScore){
 
-    mainQuestEl.style.visibility = "hidden";
-    questtionEl.style.visibility = "hidden";
-    responseEl.style.visibility = "hidden";
+    mainQuestEl.innerHTML = "";
+    var theScore = myScore;
 
+
+    var congrats = document.createElement("h2");
+    congrats.innerHTML = "All Done!"
+
+    var yourScore = document.createElement("p");
+    yourScore.innerHTML = "Your final Score is" + theScore;
+
+
+
+    console.log("my score is ", theScore);
 
 
 }
+
+
 //timer for quiz
 function startTimer(){
     //start the counting in miliseconds
@@ -72,12 +85,21 @@ function startTimer(){
         sec--;
     
         if (sec < 0 ) {
-            endQuiz();
+        
+            // responseEl.style.visibility = "hidden";
+            endQuiz(0);
             timerEL.innerHTML='Time:'+ zero
             clearInterval(timer);
+            
         }
+
+       
        
     }, 1000);
+
+    return sec;
+
+    // userInputEl.style.visibility = "vissible";
 };
 
 //function to display highscore
@@ -99,22 +121,23 @@ function rightWrong(choice){
         responseEl.appendChild(result);
         responseEl.style.visibility = "visible";
         // clickedButton = true;
+        score = sec
        
     }
     else{
         var result = document.createElement("div");
         result.innerHTML = "Wrong choice"
         responseEl.appendChild(result);
-        responseEl.style.visibility = "visible";
-        // clickedButton = true;
-
         sec = sec - 10;
-        
-        
+        score = sec
     }
-   
-    emptyQuest();
 
+    userInputEl.style.visibility = "visible";
+    var userName = document.querySelector(".name")
+    console.log("my name is ", userName);
+    emptyQuest();
+    
+    
 };
 
 function getValue (){
@@ -136,6 +159,7 @@ function objButton(counter){
 
     ansNum = 1;
 
+
     while (ansNum <= 4){
         var option = document.createElement("button");
         option.setAttribute("class","button");
@@ -144,20 +168,52 @@ function objButton(counter){
         choicesEl.appendChild(option);
         console.log("options", option.innerHTML);
         option.addEventListener("click",getValue);
+        quizDone = false;
         ansNum ++;
 
     }
+   
+
 }
 
 ///Go through the oject 
-function goThroughOb(counter,number){
+function goThroughOb(counter){
+
+    // console.log("my time is ",JSON.stringify(timerEL.getValue));
+    // if(counter > quizObj.length){
+
+    //     console.log("my count is", quizObj.length);
+    //     console.log("my time is ",timerEL.getValue);
+    //     endQuiz(timerEL.getValue);
+    // }
+
     // emptyQuest();
-    number ++;
-    console.log("what is my number",counter);
-    var myQuestion = quizObj[counter]["Questions"];
-    console.log(quizObj[counter]["Questions"]);
-    displayQuestion(myQuestion);
-    objButton(counter);
+    if (counter < quizObj.length){
+        
+
+        console.log("what is my number",counter);
+        var myQuestion = quizObj[counter]["Questions"];
+        console.log(quizObj[counter]["Questions"]);
+        displayQuestion(myQuestion);
+        objButton(counter);
+        
+
+    }else{
+        var smallSec = timerEL.innerHTML.split(":");
+        var scoreCount = smallSec[1];
+        console.log("my quiz has ended",counter)
+        endQuiz(scoreCount);
+
+
+    }
+    // console.log("what is my number",counter);
+    // var myQuestion = quizObj[counter]["Questions"];
+    // console.log(quizObj[counter]["Questions"]);
+    // displayQuestion(myQuestion);
+    // objButton(counter);
+
+
+
     
 }
 
@@ -201,27 +257,16 @@ function quizStart(){
 
 //starts the game 
 function startgame(){
+   
+
     quizStart();
-    var questionNumber = 1;
-    var lengthQuiz = quizObj["length"];
-    // goThroughOb(questionCount,questionNumber);
-    // goThroughOb(questionCount,questionNumber);
 
-    console.log("questionNU",questionNumber);
-    console.log("questionNU",lengthQuiz);
+    
+    goThroughOb(questionCount);
+    // console.log("my score is ", score);
 
-    if(questionNumber >= lengthQuiz){
-        emptyQuest();
-    }else{
-        goThroughOb(questionCount,questionNumber);
-    }
-    // } else if(questionNumber < lengthQuiz){
-    //     console.log("i am on this question",questionNumber + ">"+ lengthQuiz) ;
-    //     goThroughOb(questionCount,questionNumber);
-    // }
-    // if(questionNumber = lengthQuiz){
-    //     emptyQuest();
-    // }
+    // var lengthIndex = (quizObj["length"]) - 1;
+ 
     
 
     
@@ -229,7 +274,14 @@ function startgame(){
 
 function main(){
     //When star is pressed it start the game 
+
+    // classintro.style.visibility = "hidden";
+    // scoreDisplay.style.visibility = "hidden";
+    // NameDisplay.style.visibility = "hidden";
+    classintro.style.visibility = "hidden";
+
     startEl.addEventListener("click",startgame);
+
 
 }
 

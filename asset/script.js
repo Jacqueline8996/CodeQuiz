@@ -23,7 +23,6 @@ var count = 0;
 var finalScore = 0;
 var questionCount = 0;
 var quizTaker = [];
-//remove object
 var quizDone = false;
 var quizObj = [
     {
@@ -72,112 +71,63 @@ function startTimer(){
         sec--;
     
         if (sec < 0 ) {
-
-            // timer = 0;
-            // var stop = "stop"
-            // responseEl.style.visibility = "hidden";
-            // timerEL.innerHTML = " ";
             endQuiz(0);
-            // timerEL.innerHTML = " ";
-            // timerEL.innerHTML='Time:'+ zero
             clearInterval(timer);
-            
         }
-
-       
     }, 1000);
-
-   
-
-
-
-    // userInputEl.style.visibility = "vissible";
 };
-
+//adds the data to local storage
 function addData(){
-    console.log("you have cliccked to save");
     var names = nameTitle.value;
     quizTaker.push([names,score]);
-    console.log("my list", quizTaker);
     localStorage.setItem("testTaker", JSON.stringify(quizTaker));
     saveData();
-
 
 }
 
 function saveData(){
-
-    // var myScore2 = finalScore;
     var pastScore = quizTaker
     localStorage.setItem("testTaker", JSON.stringify(pastScore));
-    
-    
 }
 
 function endQuiz(myScore){
-
     mainQuestEl.innerHTML = "";
-    // Userdisplay(myScore);
-    console.log("what is the question count",questionCount);
 
     if(myScore == 0 && questionCount < quizObj.length ){
-
         finalScore = myScore;
-        console.log("i cleared my timer")
         Userdisplay(myScore);
-        
-        
-
     }else if (myScore != 0){
         finalScore = myScore;
-
         Userdisplay(myScore);
-        
 
     }
-
-
-
-
 }
   
 function Userdisplay(myScore){
 
-    console.log("myscore is ", myScore);
-    
     scoreDisplayEl.innerHTML = "Your Score is : " + myScore ;
-    classintro.style.visibility = "visible";
-
-    // saveData(myScore);
-    
+    classintro.style.visibility = "visible";    
     submitEl.addEventListener("click", addData);
 
     
 }
-//function to display highscore
+
 function highscoreDis(){
-    console.log("i am in highscoreDis")
     scr = "highscore.html"
-    
 };
 
-// function viewHighScore(){
-
-// };
 
 //determins if the answer is right or wrong
 function rightWrong(choice){
  
     document.querySelector(".response").innerHTML = "";
-    console.log("in right or wrong to check choice", choice);
     var result = document.createElement("div");
 
+    //if choice equal correct answer
     if (choice === quizObj[questionCount]["correct"]){
-        // var result = document.createElement("div");
         result.innerHTML = "Right choice"
         responseEl.appendChild(result);
         responseEl.style.visibility = "visible";
-        // clickedButton = true;
         score = sec
        
     }
@@ -192,20 +142,16 @@ function rightWrong(choice){
 
     userInputEl.style.visibility = "visible";
     var userName = document.querySelector(".name")
-    console.log("my name is ", userName);
     emptyQuest();
     
     
 };
 
+//get the vvalue 
 function getValue (){
-
-   
     var userClick = event.target.innerHTML;
-    console.log("yourchoice is ", userClick);
     rightWrong(userClick);
     clickedButton = true;
-    console.log("did you cick if", clickedButton);
     questionCount ++;
     goThroughOb(questionCount);
 };
@@ -213,24 +159,18 @@ function getValue (){
 //empty  the page
 //button with objet
 function objButton(counter){
-    
 
     ansNum = 1;
-
-
     while (ansNum <= 4){
         var option = document.createElement("button");
         option.setAttribute("class","button");
         option.setAttribute("id","choiceBtn");
         option.innerHTML = quizObj[counter]["Answer" + ansNum];
         choicesEl.appendChild(option);
-        console.log("options", option.innerHTML);
         option.addEventListener("click",getValue);
         quizDone = false;
         ansNum ++;
-
     }
-   
 
 }
 
@@ -238,11 +178,7 @@ function objButton(counter){
 function goThroughOb(counter){
 
     if (counter < quizObj.length){
-        
-
-        console.log("what is my number",counter);
         var myQuestion = quizObj[counter]["Questions"];
-        console.log(quizObj[counter]["Questions"]);
         displayQuestion(myQuestion);
         objButton(counter);
         
@@ -250,12 +186,8 @@ function goThroughOb(counter){
     }else{
         var smallSec = timerEL.innerHTML.split(":");
         var scoreCount = smallSec[1];
-        console.log("my quiz has ended",counter)
-        endQuiz(scoreCount);
-
-
-    }
-   
+        endQuiz(scoreCount)
+    } 
     
 }
 
@@ -269,7 +201,6 @@ function displayNameAdd(){
     nameInstr.setAttribute("class","instruction");
     nameInstr.innerHTML = "Your Final Score is " + "score";
     mainQuestEl.appendChild(nameInstr);
-    // var userName = document.createElement("input");
     nameInstr.setAttribute("class","instruction");
     nameTitle.innerHTML = document.createElement("input");
     mainQuestEl.appendChild(nameTitle);
@@ -305,6 +236,7 @@ function startgame(){
 
 };
 
+//calls main function
 function main(){
 
     classintro.style.visibility = "hidden";

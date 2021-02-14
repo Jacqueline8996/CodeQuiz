@@ -1,6 +1,7 @@
 var clearElem = document.querySelector("#clear-score");
 var tableElem = document.querySelector(".HighscoreTable");
 var rowElem = document.querySelector(".userInfoRow");
+let saveUser = JSON.parse(localStorage.getItem("testTaker"));
 
 jsarray = JSON.parse(localStorage.getItem("quizTaker"));
 
@@ -8,7 +9,7 @@ jsarray = JSON.parse(localStorage.getItem("quizTaker"));
 
 function displaySave(){
 
-    let saveUser = JSON.parse(localStorage.getItem("testTaker"));
+    // let saveUser = JSON.parse(localStorage.getItem("testTaker"));
     // var saveIndex = jsarray.length - 1
 
     
@@ -25,21 +26,31 @@ function displaySave(){
             tableElem.appendChild(rowElem);
         }
 
-        
-
-    }else{
+    }
+    else{
 
         clearUser = [];
         localStorage.setItem("testTaker", JSON.stringify(clearUser));
+        tableElem.innerHTML = " ";
     }
 }
 
 function clearUser(){
-
     
-    localStorage.setItem("testTaker", JSON.stringify(" "));
+    localStorage.setItem("testTaker", JSON.stringify([]));
+    tableElem.innerHTML = " ";
+
 
 }
 
-displaySave();
+
+if(jsarray == []) {
+
+    tableElem.innerHTML = " ";
+
+}else{
+    displaySave();
+
+}
+
 clearElem.addEventListener("click",clearUser);

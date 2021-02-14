@@ -94,16 +94,22 @@ function startTimer(){
     // userInputEl.style.visibility = "vissible";
 };
 
-function saveData(){
-
-    // var myScore2 = finalScore;
-
+function addData(){
     console.log("you have cliccked to save");
     var names = nameTitle.value;
     quizTaker.push([names,score]);
     console.log("my list", quizTaker);
-    var lengthList = quizTaker.length + 1
     localStorage.setItem("testTaker", JSON.stringify(quizTaker));
+    saveData();
+
+
+}
+
+function saveData(){
+
+    // var myScore2 = finalScore;
+    var pastScore = quizTaker
+    localStorage.setItem("testTaker", JSON.stringify(pastScore));
     
     
 }
@@ -144,7 +150,7 @@ function Userdisplay(myScore){
 
     // saveData(myScore);
     
-    submitEl.addEventListener("click", saveData);
+    submitEl.addEventListener("click", addData);
 
     
 }
@@ -263,7 +269,7 @@ function displayNameAdd(){
     nameInstr.setAttribute("class","instruction");
     nameInstr.innerHTML = "Your Final Score is " + "score";
     mainQuestEl.appendChild(nameInstr);
-    var userName = document.createElement("input");
+    // var userName = document.createElement("input");
     nameInstr.setAttribute("class","instruction");
     nameTitle.innerHTML = document.createElement("input");
     mainQuestEl.appendChild(nameTitle);

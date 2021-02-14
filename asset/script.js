@@ -13,6 +13,10 @@ var highscoreTable = document.querySelector("HighscoreTable");
 var highscoreRow = document.querySelector("userInfoRow");
 var userInputEl = document.querySelector("#initalPrompt");
 var classintro = document.querySelector("#classUser");
+var doneTitle = document.querySelector(".Done");
+var nameTitle = document.querySelector(".name");
+var submitEl = document.querySelector("#enter");
+var scoreDisplayEl = document.querySelector(".scoreDisp");
 var sec = 50;
 var zero = 0;
 var count = 0;
@@ -56,26 +60,8 @@ var quizObj = [
 
 
 ];
-function endQuiz(myScore){
 
-    mainQuestEl.innerHTML = "";
-    var theScore = myScore;
-
-
-    var congrats = document.createElement("h2");
-    congrats.innerHTML = "All Done!"
-
-    var yourScore = document.createElement("p");
-    yourScore.innerHTML = "Your final Score is" + theScore;
-
-
-
-    console.log("my score is ", theScore);
-
-
-}
-
-
+  
 //timer for quiz
 function startTimer(){
     //start the counting in miliseconds
@@ -85,22 +71,92 @@ function startTimer(){
         sec--;
     
         if (sec < 0 ) {
-        
+
+            // timer = 0;
+            // var stop = "stop"
             // responseEl.style.visibility = "hidden";
+            // timerEL.innerHTML = " ";
             endQuiz(0);
-            timerEL.innerHTML='Time:'+ zero
+            // timerEL.innerHTML = " ";
+            // timerEL.innerHTML='Time:'+ zero
             clearInterval(timer);
             
         }
-
-       
        
     }, 1000);
 
-    return sec;
 
     // userInputEl.style.visibility = "vissible";
 };
+
+function Userdisplay(myScore){
+
+    console.log("myscore is ", myScore);
+    // name = nameTitle
+    scoreDisplayEl.innerHTML = "Your Score is : " + myScore ;
+    submitEl.addEventListener("click",saveData(myScore));
+
+    classintro.style.visibility = "visible";
+    // var names =nameTitle.innerHTML
+    // console.log("my name is ", names);
+
+    // var UserDiv = document.querySelectorAll("#startWindow").createElement("<div>")
+
+
+
+
+}
+function saveData(myscore){
+
+    console.log("what name ", name);
+    var names = nameTitle.value;
+    console.log("my name is ", names);
+    quizTaker.push(names);
+    var pastHighScore = quizTaker;
+    localStorage.setItem("names", JSON.stringify(pastHighScore));
+    localStorage.setItem("score", JSON.stringify(myscore));
+    
+}
+function displaySave(){
+
+    let saveCities = JSON.parse(localStorage.getItem("names"));
+    // var lastCityIndex = saveCities.length - 1
+
+    // if (saveCities != null && saveCities.length > 0){
+
+    //     var lastCityIndex = saveCities.length - 1
+    //     for (i4 = 0; i4 < saveCities.length ; i4++){
+    //      searchHistory(saveCities[i4])
+    //     }
+    //     displaydaily(saveCities[lastCityIndex]);
+
+    // }else{
+    //     clearcity = [];
+    //     localStorage.setItem("cities", JSON.stringify(clearcity));
+    // }
+}
+
+function endQuiz(myScore){
+
+    mainQuestEl.innerHTML = "";
+    // Userdisplay(myScore);
+
+    if(myScore != "stop"){
+
+        // timerEL.innerHTML = " ";
+        // document.querySelector(".time").innerHTML = "";
+        console.log("i cleared my timer")
+        Userdisplay(myScore);
+        
+
+    }else{
+
+        Userdisplay(myScore);
+
+    }
+
+
+}
 
 //function to display highscore
 function highscoreDis(){
@@ -114,9 +170,10 @@ function rightWrong(choice){
  
     document.querySelector(".response").innerHTML = "";
     console.log("in right or wrong to check choice", choice);
+    var result = document.createElement("div");
 
     if (choice === quizObj[questionCount]["correct"]){
-        var result = document.createElement("div");
+        // var result = document.createElement("div");
         result.innerHTML = "Right choice"
         responseEl.appendChild(result);
         responseEl.style.visibility = "visible";
@@ -128,6 +185,7 @@ function rightWrong(choice){
         var result = document.createElement("div");
         result.innerHTML = "Wrong choice"
         responseEl.appendChild(result);
+        responseEl.style.visibility = "visible";
         sec = sec - 10;
         score = sec
     }
@@ -179,15 +237,6 @@ function objButton(counter){
 ///Go through the oject 
 function goThroughOb(counter){
 
-    // console.log("my time is ",JSON.stringify(timerEL.getValue));
-    // if(counter > quizObj.length){
-
-    //     console.log("my count is", quizObj.length);
-    //     console.log("my time is ",timerEL.getValue);
-    //     endQuiz(timerEL.getValue);
-    // }
-
-    // emptyQuest();
     if (counter < quizObj.length){
         
 
@@ -206,14 +255,7 @@ function goThroughOb(counter){
 
 
     }
-    // console.log("what is my number",counter);
-    // var myQuestion = quizObj[counter]["Questions"];
-    // console.log(quizObj[counter]["Questions"]);
-    // displayQuestion(myQuestion);
-    // objButton(counter);
-
-
-
+   
     
 }
 
@@ -258,30 +300,15 @@ function quizStart(){
 //starts the game 
 function startgame(){
    
-
-    quizStart();
-
-    
+    quizStart(); 
     goThroughOb(questionCount);
-    // console.log("my score is ", score);
 
-    // var lengthIndex = (quizObj["length"]) - 1;
- 
-    
-
-    
 };
 
 function main(){
-    //When star is pressed it start the game 
 
-    // classintro.style.visibility = "hidden";
-    // scoreDisplay.style.visibility = "hidden";
-    // NameDisplay.style.visibility = "hidden";
     classintro.style.visibility = "hidden";
-
     startEl.addEventListener("click",startgame);
-
 
 }
 

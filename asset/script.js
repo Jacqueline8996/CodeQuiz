@@ -82,8 +82,11 @@ function startTimer(){
             clearInterval(timer);
             
         }
+
        
     }, 1000);
+
+
 
 
     // userInputEl.style.visibility = "vissible";
@@ -136,24 +139,26 @@ function displaySave(){
     // }
 }
 
-function endQuiz(myScore){
+function endQuiz(myScore ,counter){
 
     mainQuestEl.innerHTML = "";
     // Userdisplay(myScore);
 
-    if(myScore != "stop"){
+    if(myScore == 0 && counter < quizObj.length ){
 
         // timerEL.innerHTML = " ";
         // document.querySelector(".time").innerHTML = "";
+
         console.log("i cleared my timer")
         Userdisplay(myScore);
         
 
-    }else{
+    }else if (myScore != 0){
 
         Userdisplay(myScore);
 
     }
+
 
 
 }
@@ -251,7 +256,7 @@ function goThroughOb(counter){
         var smallSec = timerEL.innerHTML.split(":");
         var scoreCount = smallSec[1];
         console.log("my quiz has ended",counter)
-        endQuiz(scoreCount);
+        endQuiz(scoreCount , counter);
 
 
     }

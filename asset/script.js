@@ -15,11 +15,12 @@ var userInputEl = document.querySelector("#initalPrompt");
 var classintro = document.querySelector("#classUser");
 var doneTitle = document.querySelector(".Done");
 var nameTitle = document.querySelector(".name");
-var submitEl = document.querySelector("#enter");
+var submitEl = document.querySelector("#submit");
 var scoreDisplayEl = document.querySelector(".scoreDisp");
 var sec = 50;
 var zero = 0;
 var count = 0;
+var finalScore = 0;
 var questionCount = 0;
 var quizTaker = [];
 //remove object
@@ -86,57 +87,25 @@ function startTimer(){
        
     }, 1000);
 
+   
 
 
 
     // userInputEl.style.visibility = "vissible";
 };
 
-function Userdisplay(myScore){
+function saveData(){
 
-    console.log("myscore is ", myScore);
-    // name = nameTitle
-    scoreDisplayEl.innerHTML = "Your Score is : " + myScore ;
-    submitEl.addEventListener("click",saveData(myScore));
+    // var myScore2 = finalScore;
 
-    classintro.style.visibility = "visible";
-    // var names =nameTitle.innerHTML
-    // console.log("my name is ", names);
-
-    // var UserDiv = document.querySelectorAll("#startWindow").createElement("<div>")
-
-
-
-
-}
-function saveData(myscore){
-
-    console.log("what name ", name);
+    console.log("you have cliccked to save");
     var names = nameTitle.value;
-    console.log("my name is ", names);
-    quizTaker.push(names);
-    var pastHighScore = quizTaker;
-    localStorage.setItem("names", JSON.stringify(pastHighScore));
-    localStorage.setItem("score", JSON.stringify(myscore));
+    quizTaker.push([names,score]);
+    console.log("my list", quizTaker);
+    var lengthList = quizTaker.length + 1
+    localStorage.setItem("testTaker", JSON.stringify(quizTaker));
     
-}
-function displaySave(){
-
-    let saveCities = JSON.parse(localStorage.getItem("names"));
-    // var lastCityIndex = saveCities.length - 1
-
-    // if (saveCities != null && saveCities.length > 0){
-
-    //     var lastCityIndex = saveCities.length - 1
-    //     for (i4 = 0; i4 < saveCities.length ; i4++){
-    //      searchHistory(saveCities[i4])
-    //     }
-    //     displaydaily(saveCities[lastCityIndex]);
-
-    // }else{
-    //     clearcity = [];
-    //     localStorage.setItem("cities", JSON.stringify(clearcity));
-    // }
+    
 }
 
 function endQuiz(myScore){
@@ -144,31 +113,51 @@ function endQuiz(myScore){
     mainQuestEl.innerHTML = "";
     // Userdisplay(myScore);
     console.log("what is the question count",questionCount);
-    
-    //check if both the time and the quiz is not finished 
+
     if(myScore == 0 && questionCount < quizObj.length ){
 
-
+        finalScore = myScore;
         console.log("i cleared my timer")
         Userdisplay(myScore);
         
+        
 
     }else if (myScore != 0){
+        finalScore = myScore;
 
         Userdisplay(myScore);
+        
 
     }
 
 
 
-}
 
+}
+  
+function Userdisplay(myScore){
+
+    console.log("myscore is ", myScore);
+    
+    scoreDisplayEl.innerHTML = "Your Score is : " + myScore ;
+    classintro.style.visibility = "visible";
+
+    // saveData(myScore);
+    
+    submitEl.addEventListener("click", saveData);
+
+    
+}
 //function to display highscore
 function highscoreDis(){
     console.log("i am in highscoreDis")
     scr = "highscore.html"
     
 };
+
+// function viewHighScore(){
+
+// };
 
 //determins if the answer is right or wrong
 function rightWrong(choice){
@@ -315,6 +304,7 @@ function main(){
     classintro.style.visibility = "hidden";
     startEl.addEventListener("click",startgame);
 
+   
 }
 
 main();

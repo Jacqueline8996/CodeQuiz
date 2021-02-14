@@ -139,15 +139,15 @@ function displaySave(){
     // }
 }
 
-function endQuiz(myScore ,counter){
+function endQuiz(myScore){
 
     mainQuestEl.innerHTML = "";
     // Userdisplay(myScore);
+    console.log("what is the question count",questionCount);
+    
+    //check if both the time and the quiz is not finished 
+    if(myScore == 0 && questionCount < quizObj.length ){
 
-    if(myScore == 0 && counter < quizObj.length ){
-
-        // timerEL.innerHTML = " ";
-        // document.querySelector(".time").innerHTML = "";
 
         console.log("i cleared my timer")
         Userdisplay(myScore);
@@ -256,7 +256,7 @@ function goThroughOb(counter){
         var smallSec = timerEL.innerHTML.split(":");
         var scoreCount = smallSec[1];
         console.log("my quiz has ended",counter)
-        endQuiz(scoreCount , counter);
+        endQuiz(scoreCount);
 
 
     }

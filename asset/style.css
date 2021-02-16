@@ -44,8 +44,10 @@ section{
    
     background-color:rgb(172, 85, 172);
 }
-[type=button]:not(:disabled), [type=reset]:not(:disabled), [type=submit]:not(:disabled), button:not(:disabled) {
+
+.empezar{
     cursor: pointer;
+    background-color:rgb(172, 85, 172);
 }
 #choiceBtn{
     display: block;

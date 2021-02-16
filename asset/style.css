@@ -38,10 +38,10 @@ section{
     border-radius: 4px;
     padding: 5px;
     font-size: medium;
-
+    cursor: pointer;
 }
 .button:hover{
-    cursor: pointer;
+    /* cursor: pointer; */
     background-color:rgb(172, 85, 172);
 }
 #choiceBtn{

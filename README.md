@@ -25,3 +25,16 @@ Code Quiz will do the following:
 
 * Have a starting button which will commence the time of the Quiz
  
+# Images Of App Usage 
+* Start Screen of Application
+![alt text](asset/Demo_Photos/Quiz_Start.png)
+* Demo of the first Question 
+![alt text](asset/Demo_Photos/Q1.png)
+* Display of the previous Question Being Right 
+![alt text](asset/Demo_Photos/RightChoice.png)
+* Display of the Previous Question being Wrong 
+![alt text](asset/Demo_Photos/WrongQuizanswer.png)
+* User input window 
+![alt text](asset/Demo_Photos/User_input.png)
+* Display of the user input 
+![alt text](asset/Demo_Photos/HighscoreScreen.png)

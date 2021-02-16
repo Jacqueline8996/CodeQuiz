@@ -1,5 +1,5 @@
 //getting elements //
-var startEl = document.querySelector("#start-button");
+var startEl = document.querySelector(".letsGo");
 var viewScoreEL = document.querySelector(".highscore");
 var timerEL = document.querySelector(".time");
 var mainQuestEl = document.querySelector(".quizQuest");
@@ -240,7 +240,7 @@ function startgame(){
 function main(){
 
     classintro.style.visibility = "hidden";
-    document.querySelector("#start-button").addEventListener("click",startgame);
+    startEl.addEventListener("click",startgame);
 
    
 }

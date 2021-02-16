@@ -240,7 +240,7 @@ function startgame(){
 function main(){
 
     classintro.style.visibility = "hidden";
-    startEl.addEventListener("click",startgame);
+    document.querySelector("#start-button").addEventListener("click",startgame);
 
    
 }

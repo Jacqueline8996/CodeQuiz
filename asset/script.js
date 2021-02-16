@@ -244,4 +244,5 @@ function main(){
 
 }
 classintro.style.visibility = "hidden";
+
 main();

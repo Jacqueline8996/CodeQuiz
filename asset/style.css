@@ -41,6 +41,7 @@ section{
 
 }
 .button:hover{
+    cursor: pointer;
     background-color:rgb(172, 85, 172);
 }
 #choiceBtn{

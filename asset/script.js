@@ -229,8 +229,8 @@ function quizStart(){
 };
 
 //starts the game 
-function startgame(){
-   
+function startgame(event){
+    event.preventDefault();
     quizStart(); 
     goThroughOb(questionCount);
 

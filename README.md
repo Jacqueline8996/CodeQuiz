@@ -29,7 +29,7 @@ Code Quiz will do the following:
 * Have a starting button which will commence the time of the Quiz
  
 # Images Of App Usage 
-* Start Screen of Application
+* Start Screen of Application (Open CONSOLE IF BUTTON DOES Not allow clicking, from there you will be able to Click Start and work the quiz like normal)
 ![alt text](asset/Demo_Photos/Quiz_Start.png)
 * Demo of the first Question 
 ![alt text](asset/Demo_Photos/Q1.png)

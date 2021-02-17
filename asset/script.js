@@ -242,5 +242,6 @@ function startgame(){
     goThroughOb(questionCount);
 
 };
-startEl.addEventListener("click",startgame);
+
 main();
+startEl.addEventListener("click",startgame);

@@ -228,21 +228,22 @@ function quizStart(){
     questtionEl.style.visibility = "visible";
 };
 
+//calls main function
+function main(){
+  
+    // classintro.style.visibility = "hidden";
+    startEl.addEventListener("click",startgame);
+
+}
+
 //starts the game 
-function startgame(event){
-    event.preventDefault();
+function startgame(){
+
     quizStart(); 
     goThroughOb(questionCount);
 
 };
 
-//calls main function
-function main(){
-    
-    // classintro.style.visibility = "hidden";
-    startEl.addEventListener("click",startgame);
-
-}
 classintro.style.visibility = "hidden";
 
 main();

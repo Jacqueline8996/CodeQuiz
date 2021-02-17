@@ -244,6 +244,13 @@ function startgame(){
     goThroughOb(questionCount);
 
 };
+// //calls main function
+// function main(){
+  
+//     // classintro.style.visibility = "hidden";
+//     document.querySelector(".Go").addEventListener("click",startgame);
+//     classintro.style.visibility = "hidden";
 
+// }
 
 main();

@@ -233,6 +233,7 @@ function main(){
   
     // classintro.style.visibility = "hidden";
     startEl.addEventListener("click",startgame);
+    classintro.style.visibility = "hidden";
 
 }
 
@@ -244,6 +245,5 @@ function startgame(){
 
 };
 
-classintro.style.visibility = "hidden";
 
 main();

@@ -45,7 +45,7 @@ section{
     background-color:rgb(172, 85, 172);
 }
 
-a .button :hover:enabled{
+a .button :hover:active{
     cursor: pointer;
     background-color:rgb(172, 85, 172);
 }

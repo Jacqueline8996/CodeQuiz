@@ -14,6 +14,9 @@ Code Quiz will do the following:
 * The more time you have at the end of the Quiz the higher the score is.
 * This score can be saved and cleared whenever the user chooses. 
 * At the end the score of the user will be able to be recorded and be able to clear the score.
+* * If start button does not work open console and click from there the application will run smoothly after that.
+
+
 
 # Features:
 *  While the the user hovers the question the user will be able to see
